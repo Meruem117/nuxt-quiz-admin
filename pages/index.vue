@@ -10,14 +10,14 @@
 <script lang="ts">
 import Vue from 'vue'
 import Home from '@/components/Home.vue'
-import { userItem, userTeamItem } from '@/models/user'
+import { userDaoItem, userTeamItem } from '@/models/user'
 
 export default Vue.extend({
   name: "IndexPage",
   components: { Home },
   data() {
     return {
-      userInfo: {} as userItem,
+      userInfo: {} as userDaoItem,
       team: {} as userTeamItem
     }
   },
