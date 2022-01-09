@@ -50,7 +50,24 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    '@nuxtjs/axios',
+  ],
+
+  // https://axios.nuxtjs.org/options/
+  axios: {
+    proxy: true,
+    // baseURL: 'http://localhost:8080',
+  },
+  proxy: {
+    '/api': {
+      target: 'http://localhost:8080',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/api': ''
+      },
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {}
