@@ -3,7 +3,7 @@
     <Home />
     <nuxt-link :to="{ name: 'about' }">About</nuxt-link>
     <button @click="getUserById(1)">Click</button>
-    <div v-for="(id,name) in team">{{ name }}的组号为{{ id }}</div>
+    <div v-for="(id, name) in team">{{ name }}的组号为{{ id }}</div>
   </div>
 </template>
 
@@ -15,11 +15,9 @@ import { userDaoItem, userTeamItem } from '@/models/user'
 export default Vue.extend({
   name: "IndexPage",
   components: { Home },
-  data() {
-    return {
-      userInfo: {} as userDaoItem,
-      team: {} as userTeamItem
-    }
+  data: {
+    userInfo: {} as userDaoItem,
+    team: {} as userTeamItem
   },
   methods: {
     async getUserById(id: number) {
