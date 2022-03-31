@@ -10,7 +10,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Home from '@/components/Home.vue'
-import { userDaoItem, userTeamItem } from '@/models/user'
+import { userDaoItem, userTeamItem } from '~/models/user'
 
 export default Vue.extend({
   name: "IndexPage",
