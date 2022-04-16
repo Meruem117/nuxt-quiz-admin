@@ -5,8 +5,5 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'HomeContent'
-}
+<script setup lang="ts">
 </script>
