@@ -29,7 +29,8 @@
     "types": [
       "@nuxt/types",
       "@types/node",
-      "@nuxtjs/axios"
+      "@nuxtjs/axios",
+      "element-plus/global"
     ]
   },
   "exclude": [

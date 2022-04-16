@@ -1,8 +1,6 @@
 <template>
   <Home />
   <nuxt-link :to="{ name: 'about' }">About</nuxt-link>
-  <button @click="getUserById(1)">Click</button>
-  <div v-for="(id, name) in team">{{ name }}的组号为{{ id }}</div>
 </template>
 
 <script lang="ts">
