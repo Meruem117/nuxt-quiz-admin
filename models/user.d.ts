@@ -1,23 +1,27 @@
-export interface userDaoItem {
-  id: number,
-  email: string,
-  name: string,
-  password: string,
-  role: number,
-  team: string,
-  createTime: string
-}
-
 export interface userItem {
   id: number,
   email: string,
   name: string,
   password: string,
-  role: string,
-  team: userTeamItem,
+  gender: number,
+  location: string,
   createTime: string
 }
 
-interface userTeamItem {
-  [key: string]: number
+export interface userLoginItem {
+  email: string,
+  password: string
+}
+
+export interface userCheckItem {
+  check: boolean,
+  userInfo: userInfoItem
+}
+
+export interface userInfoItem {
+  id: number,
+  name: string,
+  role: number,
+  gender: number,
+  location?: string
 }
