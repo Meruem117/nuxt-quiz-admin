@@ -16,6 +16,7 @@
     "experimentalDecorators": true,
     "noImplicitThis": false,
     "noImplicitAny": false,
+    "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
       "~/*": [
