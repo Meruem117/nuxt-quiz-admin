@@ -10,14 +10,14 @@ export default defineNuxtConfig({
       {
         hid: "description",
         name: "description",
-        content: "ElementPlus + Nuxt3",
+        content: "A quiz system",
       },
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
 
   // css
-  css: ["~/assets/scss/element.scss"],
+  css: ["~/assets/scss/index.scss"],
 
   // build
   build: {},
