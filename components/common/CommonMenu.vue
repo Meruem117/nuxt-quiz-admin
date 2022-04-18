@@ -3,27 +3,45 @@
     @open="handleOpen" @close="handleClose">
     <el-menu-item index="1">
       <el-icon>
-        <icon-menu />
+        <home-filled />
       </el-icon>
-      <span>Navigator Two</span>
+      <span>Home</span>
     </el-menu-item>
     <el-menu-item index="2">
       <el-icon>
-        <document />
+        <user-filled />
       </el-icon>
-      <span>Navigator Three</span>
+      <span>User</span>
     </el-menu-item>
     <el-menu-item index="3">
       <el-icon>
-        <setting />
+        <briefcase />
       </el-icon>
-      <span>Navigator Four</span>
+      <span>Team</span>
+    </el-menu-item>
+    <el-menu-item index="4">
+      <el-icon>
+        <opportunity />
+      </el-icon>
+      <span>Topic</span>
+    </el-menu-item>
+    <el-menu-item index="5">
+      <el-icon>
+        <flag />
+      </el-icon>
+      <span>Quiz</span>
+    </el-menu-item>
+    <el-menu-item index="6">
+      <el-icon>
+        <list />
+      </el-icon>
+      <span>Question</span>
     </el-menu-item>
   </el-menu>
 </template>
 
 <script setup lang="ts">
-import { Document, Menu as IconMenu, Location, Setting } from '@element-plus/icons-vue'
+import { HomeFilled, UserFilled, Briefcase, Opportunity, Flag, List } from '@element-plus/icons-vue'
 
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
