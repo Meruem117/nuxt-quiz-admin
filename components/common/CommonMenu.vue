@@ -8,7 +8,7 @@
         <span>Home</span>
       </el-menu-item>
     </NuxtLink>
-    <NuxtLink to="/" class="no-underline">
+    <NuxtLink to="/user" class="no-underline">
       <el-menu-item index="2">
         <el-icon>
           <user-filled />
@@ -16,7 +16,7 @@
         <span>User</span>
       </el-menu-item>
     </NuxtLink>
-    <NuxtLink to="/" class="no-underline">
+    <NuxtLink to="/team" class="no-underline">
       <el-menu-item index="3">
         <el-icon>
           <briefcase />
@@ -24,7 +24,7 @@
         <span>Team</span>
       </el-menu-item>
     </NuxtLink>
-    <NuxtLink to="/" class="no-underline">
+    <NuxtLink to="/topic" class="no-underline">
       <el-menu-item index="4">
         <el-icon>
           <opportunity />
@@ -32,7 +32,7 @@
         <span>Topic</span>
       </el-menu-item>
     </NuxtLink>
-    <NuxtLink to="/" class="no-underline">
+    <NuxtLink to="/quiz" class="no-underline">
       <el-menu-item index="5">
         <el-icon>
           <flag />
@@ -40,7 +40,7 @@
         <span>Quiz</span>
       </el-menu-item>
     </NuxtLink>
-    <NuxtLink to="/" class="no-underline">
+    <NuxtLink to="/question" class="no-underline">
       <el-menu-item index="6">
         <el-icon>
           <list />
