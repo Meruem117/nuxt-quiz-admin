@@ -8,16 +8,6 @@ export interface userItem {
   createTime: string
 }
 
-export interface userLoginItem {
-  email: string,
-  password: string
-}
-
-export interface userCheckItem {
-  check: boolean,
-  userInfo: userInfoItem
-}
-
 export interface userInfoItem {
   id: number,
   name: string,

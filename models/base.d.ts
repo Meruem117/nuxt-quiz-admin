@@ -32,3 +32,13 @@ export interface pageRequestItem {
   pageNum: number,
   pageSize: number
 }
+
+export interface loginItem {
+  email: string,
+  password: string
+}
+
+export interface passwordCheckItem {
+  check: boolean,
+  userInfo: userInfoItem
+}

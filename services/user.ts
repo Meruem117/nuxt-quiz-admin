@@ -1,5 +1,5 @@
-import type { responseItem } from '@/models/base'
-import type { userItem, userLoginItem, userCheckItem } from '@/models/user'
+import type { responseItem, loginItem, passwordCheckItem } from '@/models/base'
+import type { userItem } from '@/models/user'
 import { baseUrl } from '@/constant'
 
 export async function getUserById(id: number): Promise<responseItem<userItem>> {
@@ -12,7 +12,7 @@ export async function getUserList(): Promise<responseItem<userItem[]>> {
   return response.json()
 }
 
-export async function checkUserPassword(login: userLoginItem): Promise<responseItem<userCheckItem>> {
+export async function checkUserPassword(login: loginItem): Promise<responseItem<passwordCheckItem>> {
   const response = await fetch(baseUrl + '/user/check', {
     method: 'POST',
     body: JSON.stringify(login),
@@ -23,7 +23,7 @@ export async function checkUserPassword(login: userLoginItem): Promise<responseI
   return response.json()
 }
 
-export async function handleLogin(data: userLoginItem): Promise<userCheckItem> {
+export async function handleLogin(data: loginItem): Promise<passwordCheckItem> {
   const response = await fetch('/api/login', {
     method: 'POST',
     body: JSON.stringify(data),
