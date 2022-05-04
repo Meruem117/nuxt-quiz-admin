@@ -23,7 +23,6 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { Message, Lock } from '@element-plus/icons-vue'
 import type { loginItem } from '~/models/base'
@@ -65,9 +64,9 @@ const state: stateItem = reactive({
   }
 })
 
-async function submitForm(formEl: FormInstance | undefined) {
-  if (!formEl) return
-  await formEl.validate(async (valid, fields) => {
+async function submitForm(form: FormInstance | undefined) {
+  if (!form) return
+  await form.validate(async (valid, fields) => {
     if (valid) {
       const res = await checkAdminPassword(state.form)
       state.visible = false
@@ -75,8 +74,8 @@ async function submitForm(formEl: FormInstance | undefined) {
   })
 }
 
-function resetForm(formEl: FormInstance | undefined) {
-  if (!formEl) return
-  formEl.resetFields()
+function resetForm(form: FormInstance | undefined) {
+  if (!form) return
+  form.resetFields()
 }
 </script>
