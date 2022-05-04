@@ -25,6 +25,7 @@
 <script setup lang="ts">
 import type { FormInstance, FormRules } from 'element-plus'
 import { Message, Lock } from '@element-plus/icons-vue'
+import { useAdminStore } from '~/stores/admin'
 import type { loginItem } from '~/models/base'
 import { checkAdminPassword } from '~/services/admin'
 import { DEFAULT_AVATAR } from '~/constant'
@@ -36,6 +37,7 @@ interface stateItem {
   rules: FormRules
 }
 
+const adminStore = useAdminStore()
 const loginForm = ref<FormInstance>()
 const state: stateItem = reactive({
   defaultAvatar: DEFAULT_AVATAR,
@@ -69,6 +71,11 @@ async function submitForm(form: FormInstance | undefined) {
   await form.validate(async (valid, fields) => {
     if (valid) {
       const res = await checkAdminPassword(state.form)
+      if (res.data.check) {
+        adminStore.login('s')
+      } else { 
+        
+      }
       state.visible = false
     }
   })
