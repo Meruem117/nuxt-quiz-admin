@@ -7,11 +7,3 @@ export interface userItem {
   location: string,
   createTime: string
 }
-
-export interface userInfoItem {
-  id: number,
-  name: string,
-  role: number,
-  gender: number,
-  location?: string
-}

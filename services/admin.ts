@@ -1,7 +1,7 @@
-import type { responseItem, loginItem, passwordCheckItem } from '@/models/base'
+import type { responseItem, loginItem, checkItem } from '@/models/base'
 import { baseUrl } from '@/constant'
 
-export async function checkAdminPassword(login: loginItem): Promise<responseItem<passwordCheckItem>> {
+export async function checkAdminPassword(login: loginItem): Promise<responseItem<checkItem>> {
   const response = await fetch(baseUrl + '/admin/check', {
     method: 'POST',
     body: JSON.stringify(login),

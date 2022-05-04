@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import type { FormInstance, FormRules } from 'element-plus'
+import { ElMessage, FormInstance, FormRules } from 'element-plus'
 import { Message, Lock } from '@element-plus/icons-vue'
 import { useAdminStore } from '~/stores/admin'
 import type { loginItem } from '~/models/base'
@@ -72,11 +72,14 @@ async function submitForm(form: FormInstance | undefined) {
     if (valid) {
       const res = await checkAdminPassword(state.form)
       if (res.data.check) {
-        adminStore.login('s')
-      } else { 
-        
+        adminStore.login(res.data.info.name)
+        resetForm(loginForm.value)
+        state.visible = false
+        ElMessage.success('Login successfully')
+      } else {
+        state.form.password = ''
+        ElMessage.error('Wrong email or password')
       }
-      state.visible = false
     }
   })
 }

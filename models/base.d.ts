@@ -38,7 +38,14 @@ export interface loginItem {
   password: string
 }
 
-export interface passwordCheckItem {
+export interface infoItem {
+  id: number,
+  name: string,
+  gender?: number,
+  location?: string
+}
+
+export interface checkItem {
   check: boolean,
-  userInfo: userInfoItem
+  info: infoItem
 }
