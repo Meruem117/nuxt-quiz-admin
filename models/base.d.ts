@@ -42,3 +42,10 @@ export interface passwordCheckItem {
   check: boolean,
   userInfo: userInfoItem
 }
+
+export interface ruleItem {
+  required?: boolean,
+  type?: string,
+  message?: string,
+  trigger?: string | string[]
+}
