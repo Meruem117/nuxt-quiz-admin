@@ -3,6 +3,7 @@ import { defineNuxtConfig } from 'nuxt3'
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
   // meta
+
   meta: {
     title: "Nuxt Quiz Admin",
     meta: [
@@ -18,6 +19,18 @@ export default defineNuxtConfig({
 
   // css
   css: ["~/assets/scss/index.scss"],
+
+  modules: [
+    '@gauseen/nuxt-proxy',
+  ],
+
+  proxyTable: {
+    '/api': {
+      target: 'http://localhost:8080',
+      ws: false,
+      pathRewrite: { '^/api': '' }
+    }
+  },
 
   // build
   build: {},

@@ -56,7 +56,7 @@ const state: stateItem = reactive({
         type: 'email',
         message: 'Please input correct email',
         trigger: ['blur', 'change'],
-      },
+      }
     ],
     password: {
       required: true,
@@ -70,7 +70,6 @@ async function submitForm(formEl: FormInstance | undefined) {
   await formEl.validate(async (valid, fields) => {
     if (valid) {
       const res = await checkAdminPassword(state.form)
-      console.log(res.data.check)
       state.visible = false
     }
   })
