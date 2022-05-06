@@ -1,7 +1,12 @@
 <template>
   <div class="w-full h-full flex justify-end">
-    <el-button type="primary" class="my-auto" @click="state.visible = true">Login</el-button>
-    <!-- <el-avatar class="my-auto cursor-pointer" :size="36" :src="state.defaultAvatar" /> -->
+    <div v-show="adminStore.isLogin">
+      <el-avatar class="my-auto cursor-pointer" :size="36" :src="state.defaultAvatar" />
+      <div>{{ adminStore.adminName }}</div>
+    </div>
+    <el-button type="primary" class="my-auto" @click="state.visible = true" v-show="!adminStore.isLogin">
+      Login
+    </el-button>
     <el-dialog v-model="state.visible" title="Admin Login" :append-to-body="true">
       <el-form ref="loginForm" :model="state.form" :rules="state.rules" label-position="top">
         <el-form-item label="Email" prop="email">
