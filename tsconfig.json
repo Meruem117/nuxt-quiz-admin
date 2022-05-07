@@ -4,7 +4,7 @@
   "compilerOptions": {
     "types": [
       "@vueuse/nuxt",
-      "@types/node"
+      // "@types/node"
     ],
     "strict": true,
     "jsx": "preserve"

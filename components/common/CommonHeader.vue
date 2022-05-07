@@ -1,10 +1,21 @@
 <template>
   <div class="w-full h-full flex justify-end">
-    <div v-show="adminStore.isLogin">
-      <el-avatar class="my-auto cursor-pointer" :size="36" :src="state.defaultAvatar" />
-      <div>{{ adminStore.adminName }}</div>
+    <div v-show="adminStore.isLogin" class="flex flex-col justify-center">
+      <el-popover placement="bottom" title="Logout" trigger="hover">
+        <template #reference>
+          <div class="flex cursor-pointer">
+            <el-avatar class="my-auto" :size="36" :src="state.defaultAvatar" />
+            <div class="my-auto ml-2 text-xl">{{ adminStore.adminName }}</div>
+          </div>
+        </template>
+        <el-popconfirm title="Are you sure to logout?" @confirm="logout">
+          <template #reference>
+            <el-button type="danger" class="w-full">Logout</el-button>
+          </template>
+        </el-popconfirm>
+      </el-popover>
     </div>
-    <el-button type="primary" class="my-auto" @click="state.visible = true" v-show="!adminStore.isLogin">
+    <el-button v-show="!adminStore.isLogin" type="primary" class="my-auto" @click="state.visible = true">
       Login
     </el-button>
     <el-dialog v-model="state.visible" title="Admin Login" :append-to-body="true">
@@ -20,7 +31,7 @@
         <span>
           <el-button @click="state.visible = false">Cancel</el-button>
           <el-button @click="resetForm(loginForm)">Reset</el-button>
-          <el-button type="primary" @click="submitForm(loginForm)">Submit</el-button>
+          <el-button type="primary" @click="login(loginForm)">Submit</el-button>
         </span>
       </template>
     </el-dialog>
@@ -71,7 +82,12 @@ const state: stateItem = reactive({
   }
 })
 
-async function submitForm(form: FormInstance | undefined) {
+function resetForm(form: FormInstance | undefined) {
+  if (!form) return
+  form.resetFields()
+}
+
+async function login(form: FormInstance | undefined) {
   if (!form) return
   await form.validate(async (valid, fields) => {
     if (valid) {
@@ -89,8 +105,7 @@ async function submitForm(form: FormInstance | undefined) {
   })
 }
 
-function resetForm(form: FormInstance | undefined) {
-  if (!form) return
-  form.resetFields()
+function logout() {
+  adminStore.logout()
 }
 </script>
