@@ -82,12 +82,12 @@ const state: stateItem = reactive({
   }
 })
 
-function resetForm(form: FormInstance | undefined) {
+function resetForm(form: FormInstance | undefined): void {
   if (!form) return
   form.resetFields()
 }
 
-async function login(form: FormInstance | undefined) {
+async function login(form: FormInstance | undefined): Promise<void> {
   if (!form) return
   await form.validate(async (valid, fields) => {
     if (valid) {
@@ -105,7 +105,7 @@ async function login(form: FormInstance | undefined) {
   })
 }
 
-function logout() {
+function logout(): void {
   adminStore.logout()
   ElMessage.info('Logout successfully')
 }

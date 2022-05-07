@@ -1,5 +1,19 @@
 <template>
   <h1>User</h1>
+  <el-table :data="state.data" class="w-full">
+    <el-table-column prop="id" label="Id" width="150" fixed />
+    <el-table-column prop="email" label="Email" width="120" />
+    <el-table-column prop="name" label="Name" width="120" />
+    <el-table-column prop="gender" label="Gender" width="120" />
+    <el-table-column prop="location" label="Location" width="150" />
+    <el-table-column prop="createTime" label="Create Time" width="120" />
+    <el-table-column label="Operations" width="120" fixed="right">
+      <template #default>
+        <el-button type="text" size="small" @click="openDetail">Detail</el-button>
+        <el-button type="text" size="small">Edit</el-button>
+      </template>
+    </el-table-column>
+  </el-table>
 </template>
 
 <script setup lang="ts">
@@ -25,6 +39,10 @@ async function init(): Promise<void> {
     size: state.size
   })
   state.data = res.data.records
+}
+
+function openDetail(): void {
+  console.log(1)
 }
 
 onMounted(() => {
