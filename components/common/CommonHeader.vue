@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full flex justify-end">
     <div v-show="adminStore.isLogin" class="flex flex-col justify-center">
-      <el-popover placement="bottom" title="Logout" trigger="hover">
+      <el-popover placement="bottom" title="Logout" trigger="hover" width="120">
         <template #reference>
           <div class="flex cursor-pointer">
             <el-avatar class="my-auto" :size="36" :src="state.defaultAvatar" />
@@ -107,5 +107,6 @@ async function login(form: FormInstance | undefined) {
 
 function logout() {
   adminStore.logout()
+  ElMessage.info('Logout successfully')
 }
 </script>
