@@ -8,6 +8,39 @@ export async function getUserById(id: number): Promise<responseItem<userItem>> {
   return response.json()
 }
 
+export async function addUser(data: userItem): Promise<responseItem<number>> {
+  const response = await fetch(baseUrl + '/user/add', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response.json()
+}
+
+export async function updateUserById(data: userItem): Promise<responseItem<boolean>> {
+  const response = await fetch(baseUrl + '/user/update', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response.json()
+}
+
+export async function deleteUserById(id: number): Promise<responseItem<boolean>> {
+  const response = await fetch(baseUrl + '/user/delete', {
+    method: 'POST',
+    body: JSON.stringify({ id }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response.json()
+}
+
 export async function getUserList(): Promise<responseItem<userItem[]>> {
   const response = await fetch(baseUrl + '/user/list')
   return response.json()
