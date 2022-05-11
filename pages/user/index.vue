@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col space-y-2">
     <h1>User</h1>
-    <el-button type="primary" @click="openDialog" class="w-16 mb-2">Add</el-button>
+    <el-button type="primary" @click="openDialog" class="w-16">Add</el-button>
     <el-table :data="state.list" border style="width: 100%">
       <el-table-column prop="id" label="Id" fixed />
       <el-table-column prop="email" label="Email" />
@@ -16,6 +16,10 @@
         </template>
       </el-table-column>
     </el-table>
+    <div class="flex justify-end">
+      <el-pagination background layout="prev, pager, next" :total="state.total" :page-size="state.size"
+        @current-change="changePage" />
+    </div>
     <el-dialog v-model="state.visible" :title="state.isAdd ? 'Add User' : 'User Detail'" :append-to-body="true">
       <el-form ref="userForm" :model="state.data" :rules="state.rules" label-position="top">
         <el-form-item label="Email" prop="email">
@@ -49,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import { ElMessage, FormInstance, FormRules } from 'element-plus'
+import { FormInstance, FormRules, ElMessage, ElMessageBox } from 'element-plus'
 import type { userItem } from '~/models/user'
 import { getUserPage, getUserById, updateUserById, deleteUserById, addUser } from '~/services/user'
 import { DEFAULT_PAGE_SIZE } from '~/constant'
@@ -97,21 +101,16 @@ async function load(): Promise<void> {
   state.total = res.data.total
 }
 
+function changePage(page: number) {
+  state.page = page
+  load()
+}
+
 async function openDetail(data: userItem): Promise<void> {
   const res = await getUserById(data.id)
   state.data = res.data
   state.isAdd = false
   state.visible = true
-}
-
-async function deleteUser(data: userItem): Promise<void> {
-  const res = await deleteUserById(data.id)
-  if (res.data) {
-    ElMessage.success('Delete successfully')
-    load()
-  } else {
-    ElMessage.error('Fail to delete')
-  }
 }
 
 function openDialog(): void {
@@ -120,35 +119,78 @@ function openDialog(): void {
   state.visible = true
 }
 
-async function updateUser(form: FormInstance | undefined): Promise<void> {
-  if (!form) return
-  await form.validate(async (valid, fields) => {
-    if (valid) {
-      const res = await updateUserById(state.data)
-      if (res.data) {
-        state.visible = false
-        ElMessage.success('Update successfully')
-        load()
-      } else {
-        ElMessage.error('Fail to update')
-      }
+function deleteUser(data: userItem): void {
+  ElMessageBox.confirm('Are you sure to delete?', {
+    confirmButtonText: 'Confirm',
+    cancelButtonText: 'Cancel',
+    type: 'warning'
+  }).then(async () => {
+    const res = await deleteUserById(data.id)
+    if (res.data) {
+      ElMessage.success('Delete successfully')
+      load()
+    } else {
+      ElMessage.error('Delete failed')
     }
+  }).catch(() => {
+    ElMessage({
+      type: 'info',
+      message: 'Delete canceled',
+    })
   })
 }
 
-async function addNewUser(form: FormInstance | undefined): Promise<void> {
+function updateUser(form: FormInstance | undefined): void {
   if (!form) return
-  await form.validate(async (valid, fields) => {
-    if (valid) {
-      const res = await addUser(state.data)
-      if (res.data > 0) {
-        state.visible = false
-        ElMessage.success('Add successfully')
-        load()
-      } else {
-        ElMessage.error('Fail to add')
+  ElMessageBox.confirm('Are you sure to update?', {
+    confirmButtonText: 'Confirm',
+    cancelButtonText: 'Cancel',
+    type: 'warning'
+  }).then(async () => {
+    await form.validate(async (valid, fields) => {
+      if (valid) {
+        const res = await updateUserById(state.data)
+        if (res.data) {
+          state.visible = false
+          ElMessage.success('Update successfully')
+          load()
+        } else {
+          ElMessage.error('Update failed')
+        }
       }
-    }
+    })
+  }).catch(() => {
+    ElMessage({
+      type: 'info',
+      message: 'Update canceled',
+    })
+  })
+}
+
+function addNewUser(form: FormInstance | undefined): void {
+  if (!form) return
+  ElMessageBox.confirm('Are you sure to add?', {
+    confirmButtonText: 'Confirm',
+    cancelButtonText: 'Cancel',
+    type: 'warning'
+  }).then(async () => {
+    await form.validate(async (valid, fields) => {
+      if (valid) {
+        const res = await addUser(state.data)
+        if (res.data > 0) {
+          state.visible = false
+          ElMessage.success('Add successfully')
+          load()
+        } else {
+          ElMessage.error('Add failed')
+        }
+      }
+    })
+  }).catch(() => {
+    ElMessage({
+      type: 'info',
+      message: 'Add canceled',
+    })
   })
 }
 

@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { ElMessage, FormInstance, FormRules } from 'element-plus'
+import { FormInstance, FormRules, ElMessage } from 'element-plus'
 import { Message, Lock } from '@element-plus/icons-vue'
 import { useAdminStore } from '~/stores/admin'
 import type { loginItem } from '~/models/base'
