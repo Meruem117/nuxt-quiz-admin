@@ -64,21 +64,10 @@ const state: stateItem = reactive({
   },
   rules: {
     email: [
-      {
-        required: true,
-        message: 'Please input email',
-        trigger: 'blur',
-      },
-      {
-        type: 'email',
-        message: 'Please input correct email',
-        trigger: ['blur', 'change'],
-      }
+      { required: true, message: 'Please input email', trigger: 'blur' },
+      { type: 'email', message: 'Please input correct email', trigger: ['blur', 'change'] }
     ],
-    password: {
-      required: true,
-      message: 'Please input password'
-    }
+    password: { required: true, message: 'Please input password', trigger: 'blur' }
   }
 })
 
