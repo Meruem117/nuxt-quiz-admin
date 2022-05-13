@@ -4,5 +4,6 @@ export interface teamItem {
   leader: string,
   leaderId: number,
   description: string,
-  createTime: string
+  createTime: string,
+  deleted: number
 }

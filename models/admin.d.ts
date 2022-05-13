@@ -3,5 +3,6 @@ export interface adminItem {
   email: string,
   name: string,
   password: string,
-  createTime: string
+  createTime: string,
+  deleted: number
 }

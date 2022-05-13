@@ -5,5 +5,6 @@ export interface userItem {
   password: string,
   gender: number,
   location: string,
-  createTime: string
+  createTime: string,
+  deleted: number
 }

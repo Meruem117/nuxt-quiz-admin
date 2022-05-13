@@ -11,5 +11,6 @@ export interface questionItem {
   optionD: string,
   answer: string,
   createTime: string,
-  updateTime: string
+  updateTime: string,
+  deleted: number
 }

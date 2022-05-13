@@ -4,5 +4,6 @@ export interface memberItem {
   teamName: string,
   userId: number,
   userName: string,
-  joinTime: string
+  joinTime: string,
+  deleted: number
 }

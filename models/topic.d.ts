@@ -1,5 +1,7 @@
 export interface topicItem {
   id: number,
   topic: string,
-  description: string
+  description: string,
+  createTime: string,
+  deleted: number
 }

@@ -13,7 +13,9 @@ export interface resultItem {
   correctRate: number,
   answers: string,
   errors: string,
-  isOut: number
+  isOut: number,
+  createTime: string,
+  deleted: number
 }
 
 export interface attendItem {
