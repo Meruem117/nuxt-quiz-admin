@@ -13,7 +13,7 @@ export interface resultItem {
   correctRate: number,
   answers: string,
   errors: string,
-  isOut: number,
+  isOut: string,
   createTime: string,
   deleted: number
 }
