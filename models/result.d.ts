@@ -14,6 +14,7 @@ export interface resultItem {
   answers: string,
   errors: string,
   isOut: string,
+  takeTime: string,
   createTime: string,
   deleted: number
 }
