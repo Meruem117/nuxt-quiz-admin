@@ -2,6 +2,11 @@ import type { responseItem } from '@/models/base'
 import type { resultItem } from '@/models/result'
 import { baseUrl } from '@/constant'
 
+export async function getResultById(id: number): Promise<responseItem<resultItem>> {
+  const response = await fetch(baseUrl + '/result/get?id=' + id)
+  return response.json()
+}
+
 export async function getResultListByParticipantId(id: number, isTeam: number): Promise<responseItem<resultItem[]>> {
   const response = await fetch(baseUrl + `/result/list?id=${id}&isTeam=${isTeam}`)
   return response.json()
