@@ -5,6 +5,7 @@ export interface memberItem {
   userId: number,
   userName: string,
   pass: string,
+  quit: number,
   joinTime: string,
   createTime: string
 }
