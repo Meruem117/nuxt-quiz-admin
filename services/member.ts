@@ -3,8 +3,8 @@ import type { memberItem } from '@/models/member'
 import { baseUrl } from '@/constant'
 import { jsonToQuery } from '@/utils'
 
-export async function getMemberPage(request: pageRequestItem): Promise<pageResponseItem<memberItem[]>> {
-  const response = await fetch(baseUrl + '/member/page' + jsonToQuery(request))
+export async function getMemberPage(request: pageRequestItem, teamId: unknown): Promise<pageResponseItem<memberItem[]>> {
+  const response = await fetch(baseUrl + '/member/page' + jsonToQuery({ ...request, teamId }))
   return response.json()
 }
 
