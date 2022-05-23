@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col space-y-2">
-    <h1>Team</h1>
+    <h1>{{ state.title }}</h1>
     <el-table :data="state.list" border stripe style="width: 100%">
       <el-table-column prop="id" label="Id" fixed />
       <el-table-column prop="name" label="Name" />
