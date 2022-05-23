@@ -24,7 +24,8 @@
           @current-change="changePage" />
       </div>
     </div>
-    <el-dialog v-model="state.visible" :title="state.isAdd ? 'Add User' : 'User Detail'" :append-to-body="true">
+    <el-dialog v-model="state.visible" :title="state.isAdd ? `Add ${state.title}` : `${state.title} Detail`"
+      :append-to-body="true">
       <el-form ref="userForm" :model="state.data" :rules="state.rules" label-position="top">
         <el-form-item label="Email" prop="email">
           <el-input v-model="state.data.email" type="email" clearable />
@@ -64,6 +65,7 @@ import { DEFAULT_PAGE_SIZE } from '~/constant'
 import { formatGender } from '~/utils'
 
 interface stateItem {
+  title: string,
   page: number,
   size: number,
   total: number,
@@ -76,6 +78,7 @@ interface stateItem {
 
 const userForm = ref<FormInstance>()
 const state: stateItem = reactive({
+  title: 'User',
   page: 1,
   size: DEFAULT_PAGE_SIZE,
   total: 0,
@@ -128,7 +131,8 @@ function deleteOne(data: userItem): void {
   ElMessageBox.confirm('Are you sure to delete?', {
     confirmButtonText: 'Confirm',
     cancelButtonText: 'Cancel',
-    type: 'warning'
+    type: 'warning',
+    customClass: 'el-message-box'
   }).then(async () => {
     const res = await deleteUserById({ id: data.id })
     if (res.data) {
@@ -150,7 +154,8 @@ function updateOne(form: FormInstance | undefined): void {
   ElMessageBox.confirm('Are you sure to update?', {
     confirmButtonText: 'Confirm',
     cancelButtonText: 'Cancel',
-    type: 'warning'
+    type: 'warning',
+    customClass: 'el-message-box'
   }).then(async () => {
     await form.validate(async (valid, fields) => {
       if (valid) {
@@ -177,7 +182,8 @@ function addOne(form: FormInstance | undefined): void {
   ElMessageBox.confirm('Are you sure to add?', {
     confirmButtonText: 'Confirm',
     cancelButtonText: 'Cancel',
-    type: 'warning'
+    type: 'warning',
+    customClass: 'el-message-box'
   }).then(async () => {
     await form.validate(async (valid, fields) => {
       if (valid) {

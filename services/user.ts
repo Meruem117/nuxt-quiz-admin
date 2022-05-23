@@ -3,6 +3,11 @@ import type { userItem } from '@/models/user'
 import { baseUrl } from '@/constant'
 import { jsonToQuery } from '@/utils'
 
+export async function getUserPage(request: pageRequestItem): Promise<pageResponseItem<userItem[]>> {
+  const response = await fetch(baseUrl + '/user/page' + jsonToQuery(request))
+  return response.json()
+}
+
 export async function getUserById(id: number): Promise<responseItem<userItem>> {
   const response = await fetch(baseUrl + '/user/get?id=' + id)
   return response.json()
@@ -38,10 +43,5 @@ export async function deleteUserById(data: deleteRequestItem): Promise<responseI
       'Content-Type': 'application/json'
     }
   })
-  return response.json()
-}
-
-export async function getUserPage(request: pageRequestItem): Promise<pageResponseItem<userItem[]>> {
-  const response = await fetch(baseUrl + '/user/page' + jsonToQuery(request))
   return response.json()
 }
