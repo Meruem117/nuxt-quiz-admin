@@ -2,11 +2,11 @@
   <div class="flex flex-col space-y-2">
     <h1>{{ state.title }}</h1>
     <el-table :data="state.list" border stripe style="width: 100%">
-      <el-table-column prop="id" label="Id" fixed />
-      <el-table-column prop="topic" label="Topic" />
-      <el-table-column prop="description" label="Description" show-overflow-tooltip />
-      <el-table-column prop="createTime" label="Create Time" />
-      <el-table-column label="Operations" fixed="right">
+      <el-table-column prop="id" label="Id" fixed width="120" />
+      <el-table-column prop="topic" label="Topic" width="120" />
+      <el-table-column prop="description" label="Description" show-overflow-tooltip width="120" />
+      <el-table-column prop="createTime" label="Create Time" width="120" />
+      <el-table-column label="Operations" fixed="right" width="180">
         <template v-slot="scope" #default>
           <el-button type="primary" size="small" @click="openDetail(scope.row)">Detail</el-button>
           <el-button type="danger" size="small" @click="deleteOne(scope.row)">Delete</el-button>
@@ -111,7 +111,7 @@ function deleteOne(data: topicItem): void {
     confirmButtonText: 'Confirm',
     cancelButtonText: 'Cancel',
     type: 'warning',
-    customClass: 'el-message-box'
+    customClass: 'message-box'
   }).then(async () => {
     const res = await deleteTopicById({ id: data.id })
     if (res.data) {
@@ -136,7 +136,7 @@ async function updateOne(form: FormInstance | undefined): Promise<void> {
     confirmButtonText: 'Confirm',
     cancelButtonText: 'Cancel',
     type: 'warning',
-    customClass: 'el-message-box'
+    customClass: 'message-box'
   }).then(async () => {
     const res = await updateTopicById(state.data)
     if (res.data) {
@@ -162,7 +162,7 @@ async function addOne(form: FormInstance | undefined): Promise<void> {
     confirmButtonText: 'Confirm',
     cancelButtonText: 'Cancel',
     type: 'warning',
-    customClass: 'el-message-box'
+    customClass: 'message-box'
   }).then(async () => {
     const res = await addTopic(state.data)
     if (res.data > 0) {

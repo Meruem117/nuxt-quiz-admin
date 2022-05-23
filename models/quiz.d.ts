@@ -6,9 +6,9 @@ export interface quizItem {
   creator: string,
   creatorId: number,
   description: string,
-  winner: string,
-  winnerId: number,
-  isTeam: number,
+  winner: string | null,
+  winnerId: number | null,
+  isTeam: number | null,
   createTime: string,
   deleted: number
 }

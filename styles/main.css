@@ -5,6 +5,6 @@ body,
   padding: 0;
 }
 
-.el-message-box {
+.message-box {
   z-index: 3000 !important;
 }

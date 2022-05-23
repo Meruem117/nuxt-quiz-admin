@@ -2,11 +2,18 @@
   <div class="flex flex-col space-y-2">
     <h1>{{ state.title }}</h1>
     <el-table :data="state.list" border stripe style="width: 100%">
-      <el-table-column prop="id" label="Id" fixed />
-      <el-table-column prop="quiz" label="Quiz" />
-      <el-table-column prop="description" label="Description" show-overflow-tooltip />
-      <el-table-column prop="createTime" label="Create Time" />
-      <el-table-column label="Operations" fixed="right">
+      <el-table-column prop="id" label="Id" fixed width="120" />
+      <el-table-column prop="quiz" label="Quiz" width="120" />
+      <el-table-column prop="topic" label="Topic" width="120" />
+      <el-table-column prop="round" label="Round" width="120" />
+      <el-table-column prop="creator" label="Creator" width="120" />
+      <el-table-column prop="creatorId" label="Creator Id" width="120" />
+      <el-table-column prop="description" label="Description" show-overflow-tooltip width="120" />
+      <el-table-column prop="winner" label="Winner" width="120" />
+      <el-table-column prop="winnerId" label="Winner Id" width="120" />
+      <el-table-column prop="isTeam" label="Is Team" width="120" />
+      <el-table-column prop="createTime" label="Create Time" width="120" />
+      <el-table-column label="Operations" fixed="right" width="180">
         <template v-slot="scope" #default>
           <el-button type="primary" size="small" @click="openDetail(scope.row)">Detail</el-button>
           <el-button type="danger" size="small" @click="deleteOne(scope.row)">Delete</el-button>
@@ -28,8 +35,29 @@
         <el-form-item label="Quiz" prop="quiz">
           <el-input v-model="state.data.quiz" type="text" clearable />
         </el-form-item>
+        <el-form-item label="Topic" prop="topic">
+          <el-input v-model="state.data.topic" type="text" clearable />
+        </el-form-item>
+        <el-form-item label="Round" prop="round">
+          <el-input v-model="state.data.round" type="text" clearable />
+        </el-form-item>
+        <el-form-item label="Creator" prop="creator">
+          <el-input v-model="state.data.creator" type="text" clearable />
+        </el-form-item>
+        <el-form-item label="Creator Id" prop="creatorId">
+          <el-input v-model="state.data.creatorId" type="text" clearable />
+        </el-form-item>
         <el-form-item label="Description" prop="description">
           <el-input v-model="state.data.description" type="textarea" clearable maxlength="240" show-word-limit />
+        </el-form-item>
+        <el-form-item label="Winner" prop="winner" v-show="!state.isAdd">
+          <el-input v-model="state.data.winner" type="text" clearable />
+        </el-form-item>
+        <el-form-item label="Winner Id" prop="winnerId" v-show="!state.isAdd">
+          <el-input v-model="state.data.winnerId" type="text" clearable />
+        </el-form-item>
+        <el-form-item label="Is Team" prop="isTeam" v-show="!state.isAdd">
+          <el-input v-model="state.data.isTeam" type="text" clearable />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -111,7 +139,7 @@ function deleteOne(data: quizItem): void {
     confirmButtonText: 'Confirm',
     cancelButtonText: 'Cancel',
     type: 'warning',
-    customClass: 'el-message-box'
+    customClass: 'message-box'
   }).then(async () => {
     const res = await deleteQuizById({ id: data.id })
     if (res.data) {
@@ -136,7 +164,7 @@ async function updateOne(form: FormInstance | undefined): Promise<void> {
     confirmButtonText: 'Confirm',
     cancelButtonText: 'Cancel',
     type: 'warning',
-    customClass: 'el-message-box'
+    customClass: 'message-box'
   }).then(async () => {
     const res = await updateQuizById(state.data)
     if (res.data) {
@@ -162,8 +190,11 @@ async function addOne(form: FormInstance | undefined): Promise<void> {
     confirmButtonText: 'Confirm',
     cancelButtonText: 'Cancel',
     type: 'warning',
-    customClass: 'el-message-box'
+    customClass: 'message-box'
   }).then(async () => {
+    state.data.winner = null
+    state.data.winnerId = null
+    state.data.isTeam = null
     const res = await addQuiz(state.data)
     if (res.data > 0) {
       state.visible = false
