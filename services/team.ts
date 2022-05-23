@@ -16,8 +16,3 @@ export async function getTeamListByLeaderId(id: number): Promise<responseItem<te
   const response = await fetch(baseUrl + '/team/leader?id=' + id)
   return response.json()
 }
-
-export async function handleTeam(id: number): Promise<teamItem[]> {
-  const response = await fetch('/api/team?id=' + id)
-  return response.json()
-}

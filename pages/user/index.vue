@@ -125,7 +125,7 @@ function deleteUser(data: userItem): void {
     cancelButtonText: 'Cancel',
     type: 'warning'
   }).then(async () => {
-    const res = await deleteUserById(data.id)
+    const res = await deleteUserById({ id: data.id })
     if (res.data) {
       ElMessage.success('Delete successfully')
       load()
