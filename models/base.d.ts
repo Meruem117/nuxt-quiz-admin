@@ -33,6 +33,10 @@ export interface pageRequestItem {
   size: number
 }
 
+export interface deleteRequestItem {
+  id: number
+}
+
 export interface loginItem {
   email: string,
   password: string

@@ -10,5 +10,6 @@ export interface scheduleItem {
   endTime: string,
   length: number,
   status: number,
-  createTime: string
+  createTime: string,
+  deleted: number
 }

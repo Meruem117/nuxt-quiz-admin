@@ -7,5 +7,17 @@ export interface memberItem {
   pass: string,
   quit: number,
   joinTime: string,
-  createTime: string
+  createTime: string,
+  deleted: number
+}
+
+export interface memberApplyItem {
+  teamId: number,
+  teamName: string,
+  userId: number,
+  userName: string,
+}
+
+export interface memberQuitItem {
+  id: number
 }
