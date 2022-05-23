@@ -6,5 +6,5 @@ body,
 }
 
 .el-message-box {
-  z-index: 3000;
+  z-index: 3000 !important;
 }
