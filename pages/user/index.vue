@@ -96,7 +96,7 @@ const state: stateItem = reactive({
       { min: 1, max: 40, message: 'Length should be 1 to 40', trigger: 'blur' }
     ],
     password: { required: true, message: 'Please input password', trigger: 'blur' },
-    gender: { required: true, message: 'Please input gender', trigger: 'blur' },
+    gender: { required: true, message: 'Please input gender', trigger: 'blur' }
   }
 })
 
@@ -149,26 +149,24 @@ function deleteOne(data: userItem): void {
   })
 }
 
-function updateOne(form: FormInstance | undefined): void {
+async function updateOne(form: FormInstance | undefined): Promise<void> {
   if (!form) return
+  const validate = await form.validate()
+  if (!validate) return
   ElMessageBox.confirm('Are you sure to update?', {
     confirmButtonText: 'Confirm',
     cancelButtonText: 'Cancel',
     type: 'warning',
     customClass: 'el-message-box'
   }).then(async () => {
-    await form.validate(async (valid, fields) => {
-      if (valid) {
-        const res = await updateUserById(state.data)
-        if (res.data) {
-          state.visible = false
-          ElMessage.success('Update successfully')
-          load()
-        } else {
-          ElMessage.error('Update failed')
-        }
-      }
-    })
+    const res = await updateUserById(state.data)
+    if (res.data) {
+      state.visible = false
+      ElMessage.success('Update successfully')
+      load()
+    } else {
+      ElMessage.error('Update failed')
+    }
   }).catch(() => {
     ElMessage({
       type: 'info',
@@ -177,26 +175,24 @@ function updateOne(form: FormInstance | undefined): void {
   })
 }
 
-function addOne(form: FormInstance | undefined): void {
+async function addOne(form: FormInstance | undefined): Promise<void> {
   if (!form) return
+  const validate = await form.validate()
+  if (!validate) return
   ElMessageBox.confirm('Are you sure to add?', {
     confirmButtonText: 'Confirm',
     cancelButtonText: 'Cancel',
     type: 'warning',
     customClass: 'el-message-box'
   }).then(async () => {
-    await form.validate(async (valid, fields) => {
-      if (valid) {
-        const res = await addUser(state.data)
-        if (res.data > 0) {
-          state.visible = false
-          ElMessage.success('Add successfully')
-          load()
-        } else {
-          ElMessage.error('Add failed')
-        }
-      }
-    })
+    const res = await addUser(state.data)
+    if (res.data > 0) {
+      state.visible = false
+      ElMessage.success('Add successfully')
+      load()
+    } else {
+      ElMessage.error('Add failed')
+    }
   }).catch(() => {
     ElMessage({
       type: 'info',
