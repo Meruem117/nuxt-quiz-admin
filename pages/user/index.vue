@@ -12,7 +12,7 @@
       <el-table-column label="Operations" fixed="right">
         <template v-slot="scope" #default>
           <el-button type="primary" size="small" @click="openDetail(scope.row)">Detail</el-button>
-          <el-button type="danger" size="small" @click="deleteUser(scope.row)">Delete</el-button>
+          <el-button type="danger" size="small" @click="deleteOne(scope.row)">Delete</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -44,8 +44,8 @@
       <template #footer>
         <span>
           <el-button @click="state.visible = false">Cancel</el-button>
-          <el-button v-show="state.isAdd" type="primary" @click="addNewUser(userForm)">Add</el-button>
-          <el-button v-show="!state.isAdd" type="primary" @click="updateUser(userForm)">Update</el-button>
+          <el-button v-show="state.isAdd" type="primary" @click="addOne(userForm)">Add</el-button>
+          <el-button v-show="!state.isAdd" type="primary" @click="updateOne(userForm)">Update</el-button>
         </span>
       </template>
     </el-dialog>
@@ -119,7 +119,7 @@ function openDialog(): void {
   state.visible = true
 }
 
-function deleteUser(data: userItem): void {
+function deleteOne(data: userItem): void {
   ElMessageBox.confirm('Are you sure to delete?', {
     confirmButtonText: 'Confirm',
     cancelButtonText: 'Cancel',
@@ -140,7 +140,7 @@ function deleteUser(data: userItem): void {
   })
 }
 
-function updateUser(form: FormInstance | undefined): void {
+function updateOne(form: FormInstance | undefined): void {
   if (!form) return
   ElMessageBox.confirm('Are you sure to update?', {
     confirmButtonText: 'Confirm',
@@ -167,7 +167,7 @@ function updateUser(form: FormInstance | undefined): void {
   })
 }
 
-function addNewUser(form: FormInstance | undefined): void {
+function addOne(form: FormInstance | undefined): void {
   if (!form) return
   ElMessageBox.confirm('Are you sure to add?', {
     confirmButtonText: 'Confirm',
