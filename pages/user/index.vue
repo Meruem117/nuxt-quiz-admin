@@ -1,12 +1,11 @@
 <template>
   <div class="flex flex-col space-y-2">
     <h1>User</h1>
-    <el-button type="primary" @click="openDialog" class="w-16">Add</el-button>
-    <el-table :data="state.list" border style="width: 100%">
+    <el-table :data="state.list" border stripe style="width: 100%">
       <el-table-column prop="id" label="Id" fixed />
       <el-table-column prop="email" label="Email" />
       <el-table-column prop="name" label="Name" />
-      <el-table-column prop="gender" label="Gender" />
+      <el-table-column prop="gender" label="Gender" :formatter="formatGender" />
       <el-table-column prop="location" label="Location" />
       <el-table-column prop="createTime" label="Create Time" />
       <el-table-column label="Operations" fixed="right">
@@ -16,9 +15,14 @@
         </template>
       </el-table-column>
     </el-table>
-    <div class="flex justify-end">
-      <el-pagination background layout="prev, pager, next" :total="state.total" :page-size="state.size"
-        @current-change="changePage" />
+    <div class="flex pt-2">
+      <div class="flex justify-start w-1/2">
+        <el-button type="primary" @click="openDialog" class="w-16">Add</el-button>
+      </div>
+      <div class="flex justify-end w-1/2">
+        <el-pagination background layout="prev, pager, next" :total="state.total" :page-size="state.size"
+          @current-change="changePage" />
+      </div>
     </div>
     <el-dialog v-model="state.visible" :title="state.isAdd ? 'Add User' : 'User Detail'" :append-to-body="true">
       <el-form ref="userForm" :model="state.data" :rules="state.rules" label-position="top">
@@ -57,6 +61,7 @@ import { FormInstance, FormRules, ElMessage, ElMessageBox } from 'element-plus'
 import type { userItem } from '~/models/user'
 import { getUserPage, getUserById, updateUserById, deleteUserById, addUser } from '~/services/user'
 import { DEFAULT_PAGE_SIZE } from '~/constant'
+import { formatGender } from '~/utils'
 
 interface stateItem {
   page: number,

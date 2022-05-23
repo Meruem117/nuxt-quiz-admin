@@ -1,3 +1,5 @@
+import { GENDER } from '@/constant'
+
 export function jsonToQuery(obj: any): string {
   if (obj) {
     let query = ''
@@ -13,4 +15,8 @@ export function jsonToQuery(obj: any): string {
   } else {
     return ''
   }
+}
+
+export function formatGender(row: unknown, column: unknown, cellValue: number, index: number): string {
+  return GENDER[cellValue]
 }
