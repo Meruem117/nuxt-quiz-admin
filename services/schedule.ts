@@ -3,8 +3,8 @@ import type { scheduleItem } from '@/models/schedule'
 import { baseUrl } from '@/constant'
 import { jsonToQuery } from '@/utils'
 
-export async function getSchedulePage(request: pageRequestItem): Promise<pageResponseItem<scheduleItem[]>> {
-  const response = await fetch(baseUrl + '/schedule/page' + jsonToQuery(request))
+export async function getSchedulePage(request: pageRequestItem, quizId: number): Promise<pageResponseItem<scheduleItem[]>> {
+  const response = await fetch(baseUrl + '/schedule/page' + jsonToQuery({ ...request, quizId }))
   return response.json()
 }
 

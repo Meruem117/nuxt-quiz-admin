@@ -3,7 +3,13 @@
     <h1>{{ state.title }}</h1>
     <el-table :data="state.list" border stripe style="width: 100%">
       <el-table-column prop="id" label="Id" fixed width="120" />
-      <el-table-column prop="quiz" label="Quiz" width="120" />
+      <el-table-column label="Quiz" width="120">
+        <template #default="scope">
+          <NuxtLink :to="`/quiz/${scope.row.id}?name=${scope.row.quiz}`">
+            {{ scope.row.quiz }}
+          </NuxtLink>
+        </template>
+      </el-table-column>
       <el-table-column prop="topic" label="Topic" width="120" />
       <el-table-column prop="round" label="Round" width="120" />
       <el-table-column prop="creator" label="Creator" width="120" />
