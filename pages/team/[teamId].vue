@@ -2,7 +2,7 @@
   <div class="flex flex-col space-y-2">
     <el-breadcrumb separator="/" class="text-lg">
       <el-breadcrumb-item :to="{ path: '/team' }">Team</el-breadcrumb-item>
-      <el-breadcrumb-item>{{ teamId }} - {{ state.title }}</el-breadcrumb-item>
+      <el-breadcrumb-item>{{ teamName }} - {{ state.title }}</el-breadcrumb-item>
     </el-breadcrumb>
     <el-table :data="state.list" border stripe style="width: 100%">
       <el-table-column prop="id" label="Id" fixed width="120" />
@@ -33,7 +33,12 @@
     <el-dialog v-model="state.visible" :title="state.isAdd ? `Add ${state.title}` : `${state.title} Detail`"
       :append-to-body="true">
       <el-form ref="memberForm" :model="state.data" :rules="state.rules" label-position="top">
-        //TODO
+        <el-form-item label="User Id" prop="userId">
+          <el-input v-model="state.data.userId" type="text" clearable />
+        </el-form-item>
+        <el-form-item label="User Name" prop="userName">
+          <el-input v-model="state.data.userName" type="text" clearable />
+        </el-form-item>
       </el-form>
       <template #footer>
         <span>
@@ -65,7 +70,8 @@ interface stateItem {
 }
 
 const route = useRoute()
-const teamId = route.params.teamId
+const teamId = Number(route.params.teamId)
+const teamName = String(route.query.name)
 const memberForm = ref<FormInstance>()
 const state: stateItem = reactive({
   title: 'Member',
@@ -174,7 +180,7 @@ async function addOne(form: FormInstance | undefined): Promise<void> {
     type: 'warning',
     customClass: 'message-box'
   }).then(async () => {
-    const res = await addMember(state.data)
+    const res = await addMember({ ...state.data, teamId, teamName })
     if (res.data > 0) {
       state.visible = false
       ElMessage.success('Add successfully')

@@ -5,7 +5,7 @@
       <el-table-column prop="id" label="Id" fixed width="120" />
       <el-table-column label="Name" width="120">
         <template #default="scope">
-          <NuxtLink :to="`/team/${scope.row.id}`">
+          <NuxtLink :to="`/team/${scope.row.id}?name=${scope.row.name}`">
             {{ scope.row.name }}
           </NuxtLink>
         </template>
