@@ -3,8 +3,8 @@ import type { questionItem } from '@/models/question'
 import { baseUrl } from '@/constant'
 import { jsonToQuery } from '@/utils'
 
-export async function getQuestionPage(request: pageRequestItem): Promise<pageResponseItem<questionItem[]>> {
-  const response = await fetch(baseUrl + '/question/page' + jsonToQuery(request))
+export async function getQuestionPage(request: pageRequestItem, topicId: number): Promise<pageResponseItem<questionItem[]>> {
+  const response = await fetch(baseUrl + '/question/page' + jsonToQuery({ ...request, topicId }))
   return response.json()
 }
 

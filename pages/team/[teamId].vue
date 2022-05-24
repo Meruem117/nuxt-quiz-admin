@@ -83,15 +83,11 @@ const state: stateItem = reactive({
   isAdd: false,
   data: {} as memberItem,
   rules: {
-    name: [
-      { required: true, message: 'Please input member name', trigger: 'blur' },
+    userId: { required: true, message: 'Please input user id', trigger: 'blur' },
+    userName: [
+      { required: true, message: 'Please input user name', trigger: 'blur' },
       { min: 1, max: 40, message: 'Length should be 1 to 40', trigger: 'blur' }
-    ],
-    leader: [
-      { required: true, message: 'Please input leader', trigger: 'blur' },
-      { min: 1, max: 40, message: 'Length should be 1 to 40', trigger: 'blur' }
-    ],
-    leaderId: { required: true, message: 'Please input leader id', trigger: 'blur' }
+    ]
   }
 })
 
