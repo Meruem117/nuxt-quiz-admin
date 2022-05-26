@@ -40,14 +40,14 @@
         <span>Quiz</span>
       </el-menu-item>
     </NuxtLink>
-    <!-- <NuxtLink to="/question" class="no-underline">
+    <NuxtLink to="/result" class="no-underline">
       <el-menu-item index="6">
         <el-icon>
           <list />
         </el-icon>
-        <span>Question</span>
+        <span>Result</span>
       </el-menu-item>
-    </NuxtLink> -->
+    </NuxtLink>
   </el-menu>
 </template>
 
