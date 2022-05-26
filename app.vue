@@ -23,4 +23,12 @@ import CommonFooter from '~/components/common/CommonFooter.vue'
 
 <style>
 @import "~/styles/main.css";
+
+.message-box {
+  z-index: 3000 !important;
+}
+
+.el-dialog {
+  z-index: 1000 !important;
+}
 </style>

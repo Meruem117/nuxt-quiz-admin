@@ -35,8 +35,44 @@
     </div>
     <el-dialog v-model="state.visible" :title="state.isAdd ? `Add ${state.title}` : `${state.title} Detail`"
       :append-to-body="true">
-      <el-form ref="scheduleForm" :model="state.data" :rules="state.rules" label-position="top">
-
+      <el-form ref="scheduleForm" :model="state.data" :rules="state.rules" label-position="left">
+        <el-row :gutter="10">
+          <el-col :span="8">
+            <el-form-item label="Round" prop="round">
+              <el-input-number v-model="state.data.round" :min="1" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="Count" prop="count">
+              <el-input-number v-model="state.data.count" :min="1" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="Pass Number" prop="passNum">
+              <el-input-number v-model="state.data.passNum" :min="1" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-form-item label="Question" prop="question">
+          <el-input v-model="state.data.question" type="text" clearable />
+        </el-form-item>
+        <el-row :gutter="10">
+          <el-col :span="12">
+            <el-form-item label="Start Time" prop="startTime">
+              <el-date-picker v-model="state.data.startTime" type="datetime" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="End Time" prop="endTime">
+              <el-date-picker v-model="state.data.endTime" type="datetime" />
+            </el-form-item>
+          </el-col>
+          <!-- <el-col :span="8">
+            <el-form-item label="Length" prop="length">
+              <el-input v-model="state.data.length" disabled />
+            </el-form-item>
+          </el-col> -->
+        </el-row>
       </el-form>
       <template #footer>
         <span>
@@ -81,11 +117,6 @@ const state: stateItem = reactive({
   isAdd: false,
   data: {} as scheduleItem,
   rules: {
-    userId: { required: true, message: 'Please input user id', trigger: 'blur' },
-    userName: [
-      { required: true, message: 'Please input user name', trigger: 'blur' },
-      { min: 1, max: 40, message: 'Length should be 1 to 40', trigger: 'blur' }
-    ]
   }
 })
 
@@ -189,6 +220,8 @@ async function addOne(form: FormInstance | undefined): Promise<void> {
     })
   })
 }
+
+computed(() => { })
 
 onMounted(() => {
   load()
