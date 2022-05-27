@@ -14,7 +14,7 @@
       <el-table-column prop="quit" label="Quit" width="120" />
       <el-table-column prop="joinTime" label="Join Time" width="120" />
       <el-table-column prop="createTime" label="Create Time" width="120" />
-      <el-table-column label="Operations" fixed="right" width="180">
+      <el-table-column label="Operations" fixed="right">
         <template v-slot="scope" #default>
           <el-button type="primary" size="small" @click="openDetail(scope.row)">Detail</el-button>
           <el-button type="danger" size="small" @click="deleteOne(scope.row)">Delete</el-button>
