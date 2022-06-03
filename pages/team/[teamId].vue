@@ -8,9 +8,13 @@
       <el-table-column prop="id" label="Id" fixed width="120" />
       <!-- <el-table-column prop="teamId" label="Team Id" width="120" />
       <el-table-column prop="teamName" label="Team Name" width="120" /> -->
-      <el-table-column prop="userId" label="User Id" width="120" />
-      <el-table-column prop="userName" label="User Name" width="120" />
-      <el-table-column prop="pass" label="Pass" width="120" />
+      <!-- <el-table-column prop="userId" label="User Id" width="120" /> -->
+      <el-table-column prop="userName" label="Username" width="120" />
+      <el-table-column label="Pass" width="120">
+        <template #default="scope">
+          <el-tag :type="PASS[scope.row.pass].type">{{ PASS[scope.row.pass].text }}</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column label="Quit" width="120">
         <template #default="scope">
           <el-switch :v-model="scope.row.quit === QUIT.QUIT" disabled />
@@ -65,7 +69,7 @@
 import { FormInstance, FormRules, ElMessage, ElMessageBox } from 'element-plus'
 import type { memberItem } from '~/models/member'
 import { getMemberPage, getMemberById, updateMemberById, deleteMemberById, addMember } from '~/services/member'
-import { DEFAULT_PAGE_SIZE, QUIT } from '~/constant'
+import { DEFAULT_PAGE_SIZE, PASS, QUIT } from '~/constant'
 
 interface stateItem {
   title: string,

@@ -7,7 +7,11 @@ export const DEFAULT_PAGE_SIZE = 10
 export const GENDER = ['Female', 'Male']
 
 //* member
-export const PASS = ['Pending', 'Pass', 'Denied']
+export const PASS = [
+  { text: 'Pending', type: 'info' },
+  { text: 'Pass', type: 'success' },
+  { text: 'Denied', type: 'danger' }
+]
 export const QUIT = {
   NOT_QUIT: 0,
   QUIT: 1
