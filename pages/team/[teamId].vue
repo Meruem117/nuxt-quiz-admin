@@ -6,12 +6,16 @@
     </el-breadcrumb>
     <el-table :data="state.list" border stripe style="width: 100%">
       <el-table-column prop="id" label="Id" fixed width="120" />
-      <el-table-column prop="teamId" label="Team Id" width="120" />
-      <el-table-column prop="teamName" label="Team Name" width="120" />
+      <!-- <el-table-column prop="teamId" label="Team Id" width="120" />
+      <el-table-column prop="teamName" label="Team Name" width="120" /> -->
       <el-table-column prop="userId" label="User Id" width="120" />
       <el-table-column prop="userName" label="User Name" width="120" />
       <el-table-column prop="pass" label="Pass" width="120" />
-      <el-table-column prop="quit" label="Quit" width="120" />
+      <el-table-column label="Quit" width="120">
+        <template #default="scope">
+          <el-switch :v-model="scope.row.quit === QUIT.QUIT" disabled />
+        </template>
+      </el-table-column>
       <el-table-column prop="joinTime" label="Join Time" width="120" />
       <el-table-column prop="createTime" label="Create Time" width="120" />
       <el-table-column label="Operations" fixed="right">
@@ -33,12 +37,18 @@
     <el-dialog v-model="state.visible" :title="state.isAdd ? `Add ${state.title}` : `${state.title} Detail`"
       :append-to-body="true">
       <el-form ref="memberForm" :model="state.data" :rules="state.rules" label-position="top">
-        <el-form-item label="User Id" prop="userId">
-          <el-input v-model="state.data.userId" type="text" clearable />
-        </el-form-item>
-        <el-form-item label="User Name" prop="userName">
-          <el-input v-model="state.data.userName" type="text" clearable />
-        </el-form-item>
+        <el-row :gutter="12">
+          <el-col :span="12">
+            <el-form-item label="User Id" prop="userId">
+              <el-input v-model="state.data.userId" type="text" clearable />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="User Name" prop="userName">
+              <el-input v-model="state.data.userName" type="text" clearable />
+            </el-form-item>
+          </el-col>
+        </el-row>
       </el-form>
       <template #footer>
         <span>
@@ -55,7 +65,7 @@
 import { FormInstance, FormRules, ElMessage, ElMessageBox } from 'element-plus'
 import type { memberItem } from '~/models/member'
 import { getMemberPage, getMemberById, updateMemberById, deleteMemberById, addMember } from '~/services/member'
-import { DEFAULT_PAGE_SIZE } from '~/constant'
+import { DEFAULT_PAGE_SIZE, QUIT } from '~/constant'
 
 interface stateItem {
   title: string,

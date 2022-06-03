@@ -5,3 +5,10 @@ export const DEFAULT_PAGE_SIZE = 10
 
 //* user
 export const GENDER = ['Female', 'Male']
+
+//* member
+export const PASS = ['Pending', 'Pass', 'Denied']
+export const QUIT = {
+  NOT_QUIT: 0,
+  QUIT: 1
+}

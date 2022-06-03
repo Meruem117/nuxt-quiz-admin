@@ -5,6 +5,7 @@
       <el-table-column prop="id" label="Id" fixed width="120" />
       <el-table-column prop="email" label="Email" width="240" />
       <el-table-column prop="name" label="Name" width="120" />
+      <!-- <el-table-column prop="password" label="Password" width="120" /> -->
       <el-table-column prop="gender" label="Gender" :formatter="formatGender" width="120" />
       <el-table-column prop="location" label="Location" width="120" />
       <el-table-column prop="createTime" label="Create Time" width="120" />
