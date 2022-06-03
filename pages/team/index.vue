@@ -36,12 +36,18 @@
         <el-form-item label="Name" prop="name">
           <el-input v-model="state.data.name" type="text" clearable />
         </el-form-item>
-        <el-form-item label="Leader" prop="leader">
-          <el-input v-model="state.data.leader" type="text" clearable />
-        </el-form-item>
-        <el-form-item label="Leader Id" prop="leaderId">
-          <el-input v-model="state.data.leaderId" type="text" clearable />
-        </el-form-item>
+        <el-row :gutter="12">
+          <el-col :span="12">
+            <el-form-item label="Leader" prop="leader">
+              <el-input v-model="state.data.leader" type="text" clearable />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="Leader Id" prop="leaderId">
+              <el-input v-model="state.data.leaderId" type="text" clearable />
+            </el-form-item>
+          </el-col>
+        </el-row>
         <el-form-item label="Description" prop="description">
           <el-input v-model="state.data.description" type="textarea" clearable maxlength="240" show-word-limit />
         </el-form-item>
