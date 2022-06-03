@@ -53,6 +53,18 @@
             </el-form-item>
           </el-col>
         </el-row>
+        <el-row :gutter="12" v-show="!state.isAdd">
+          <el-col :span="12">
+            <el-form-item label="Pass" prop="pass">
+              <el-input v-model="state.data.pass" type="text" clearable />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="Quit" prop="quit">
+              <el-input v-model="state.data.quit" type="text" clearable />
+            </el-form-item>
+          </el-col>
+        </el-row>
       </el-form>
       <template #footer>
         <span>
