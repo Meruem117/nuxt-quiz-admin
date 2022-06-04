@@ -17,7 +17,7 @@
       </el-table-column>
       <el-table-column label="Quit" width="90">
         <template #default="scope">
-          <el-switch :v-model="scope.row.quit === QUIT.QUIT" disabled />
+          <el-switch v-model="scope.row.quit" :active-value="QUIT.QUIT" :inactive-value="QUIT.NOT_QUIT" disabled />
         </template>
       </el-table-column>
       <el-table-column prop="joinTime" label="Join Time" width="120" />

@@ -32,3 +32,15 @@ export const STATUS = [
   { text: 'Start', type: 'success' },
   { text: 'End', type: 'danger' }
 ]
+
+//* result
+export const IS_TAKE = {
+  NOT_TAKE: 0,
+  TAKE: 1
+}
+export const IS_OUT = {
+  PENDING: '0',
+  NOT_OUT: '1',
+  OUT: '2'
+}
+

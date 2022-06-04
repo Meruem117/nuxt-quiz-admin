@@ -20,3 +20,7 @@ export function jsonToQuery(obj: any): string {
 export function formatGender(row: unknown, column: unknown, cellValue: number, index: number): string {
   return GENDER[cellValue]
 }
+
+export function formatRate(row: unknown, column: unknown, cellValue: number, index: number): string {
+  return cellValue + '%'
+}

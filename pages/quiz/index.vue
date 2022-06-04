@@ -19,7 +19,7 @@
       <!-- <el-table-column prop="winnerId" label="Winner Id" width="120" /> -->
       <el-table-column prop="isTeam" label="Is Team" width="90">
         <template #default="scope">
-          <el-switch :v-model="scope.row.isTeam === IS_TEAM.TEAM" disabled />
+          <el-switch v-model="scope.row.isTeam" :active-value="IS_TEAM.TEAM" :inactive-value="IS_TEAM.USER" disabled />
         </template>
       </el-table-column>
       <el-table-column prop="createTime" label="Create Time" width="120" />

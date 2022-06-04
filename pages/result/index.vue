@@ -9,14 +9,31 @@
       <!-- <el-table-column prop="scheduleId" label="Schedule Id" width="120" /> -->
       <!-- <el-table-column prop="participantId" label="Participant Id" width="120" /> -->
       <el-table-column prop="participantName" label="Name" width="120" />
-      <el-table-column prop="isTeam" label="Is Team" width="90" />
-      <el-table-column prop="status" label="Status" width="120" />
-      <el-table-column prop="isTake" label="Is Take" width="90" />
+      <el-table-column prop="isTeam" label="Is Team" width="90">
+        <template #default="scope">
+          <el-switch v-model="scope.row.isTeam" :active-value="IS_TEAM.TEAM" :inactive-value="IS_TEAM.USER" disabled />
+        </template>
+      </el-table-column>
+      <el-table-column prop="status" label="Status" width="120">
+        <template #default="scope">
+          <el-tag :type="STATUS[scope.row.status].type">{{ STATUS[scope.row.status].text }}</el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column prop="isTake" label="Is Take" width="90">
+        <template #default="scope">
+          <el-switch v-model="scope.row.isTake" :active-value="IS_TAKE.TAKE" :inactive-value="IS_TAKE.NOT_TAKE"
+            disabled />
+        </template>
+      </el-table-column>
       <el-table-column prop="correct" label="Correct" width="90" />
-      <el-table-column prop="correctRate" label="Correct Rate" width="90" />
+      <el-table-column prop="correctRate" label="Correct Rate" :formatter="formatRate" width="90" />
       <el-table-column prop="answers" label="Answers" show-overflow-tooltip width="120" />
       <el-table-column prop="errors" label="Errors" show-overflow-tooltip width="120" />
-      <el-table-column prop="isOut" label="Is Out" width="90" />
+      <el-table-column prop="isOut" label="Is Out" width="90">
+        <template #default="scope">
+          <el-switch v-model="scope.row.isOut" :active-value="IS_OUT.OUT" disabled />
+        </template>
+      </el-table-column>
       <el-table-column prop="takeTime" label="Take Time" width="180" />
       <el-table-column prop="createTime" label="Create Time" width="180" />
       <el-table-column label="Operations" fixed="right">
@@ -54,8 +71,8 @@
 import { FormInstance, FormRules, ElMessage, ElMessageBox } from 'element-plus'
 import type { resultItem } from '~/models/result'
 import { getResultPage, getResultById, updateResultById, deleteResultById, addResult } from '~/services/result'
-import { DEFAULT_PAGE_SIZE } from '~/constant'
-import { formatGender } from '~/utils'
+import { DEFAULT_PAGE_SIZE, STATUS, IS_TEAM, IS_TAKE, IS_OUT } from '~/constant'
+import { formatRate } from '~/utils'
 
 interface stateItem {
   title: string,
