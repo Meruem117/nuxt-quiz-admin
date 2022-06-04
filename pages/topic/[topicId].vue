@@ -7,17 +7,25 @@
     <el-table :data="state.list" border stripe style="width: 100%">
       <el-table-column prop="id" label="Id" fixed width="120" />
       <el-table-column prop="question" label="Question" show-overflow-tooltip width="120" />
-      <el-table-column prop="up" label="Up" fixed width="120" />
-      <el-table-column prop="upId" label="Up Id" fixed width="120" />
-      <el-table-column prop="topic" label="Topic" fixed width="120" />
-      <el-table-column prop="topicId" label="Topic Id" fixed width="120" />
-      <el-table-column prop="type" label="Type" fixed width="120" />
-      <el-table-column prop="optionA" label="Option A" fixed width="120" />
-      <el-table-column prop="optionB" label="Option B" fixed width="120" />
-      <el-table-column prop="optionC" label="Option C" fixed width="120" />
-      <el-table-column prop="optionD" label="Option D" fixed width="120" />
-      <el-table-column prop="answer" label="Answer" fixed width="120" />
-      <el-table-column prop="pass" label="Pass" fixed width="120" />
+      <el-table-column prop="up" label="Up" width="120" />
+      <!-- <el-table-column prop="upId" label="Up Id" fixed width="120" /> -->
+      <!-- <el-table-column prop="topic" label="Topic" fixed width="120" />
+      <el-table-column prop="topicId" label="Topic Id" fixed width="120" /> -->
+      <el-table-column prop="type" label="Type" width="150">
+        <template #default="scope">
+          <el-tag>{{ TYPE[scope.row.type] }}</el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column prop="optionA" label="Option A" width="120" />
+      <el-table-column prop="optionB" label="Option B" width="120" />
+      <el-table-column prop="optionC" label="Option C" width="120" />
+      <el-table-column prop="optionD" label="Option D" width="120" />
+      <el-table-column prop="answer" label="Answer" width="120" />
+      <el-table-column prop="pass" label="Pass" width="120">
+        <template #default="scope">
+          <el-tag :type="PASS[scope.row.pass].type">{{ PASS[scope.row.pass].text }}</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column prop="createTime" label="Create Time" width="180" />
       <el-table-column prop="updateTime" label="Update Time" width="180" />
       <el-table-column label="Operations" fixed="right">
@@ -56,7 +64,7 @@
 import { FormInstance, FormRules, ElMessage, ElMessageBox } from 'element-plus'
 import type { questionItem } from '~/models/question'
 import { getQuestionPage, getQuestionById, updateQuestionById, deleteQuestionById, addQuestion } from '~/services/question'
-import { DEFAULT_PAGE_SIZE } from '~/constant'
+import { DEFAULT_PAGE_SIZE, PASS, TYPE } from '~/constant'
 
 interface stateItem {
   title: string,

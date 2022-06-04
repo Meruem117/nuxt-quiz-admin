@@ -16,3 +16,6 @@ export const QUIT = {
   NOT_QUIT: 0,
   QUIT: 1
 }
+
+//* question
+export const TYPE = ['Multiple Choice', 'Single Choice']
