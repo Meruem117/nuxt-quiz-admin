@@ -41,34 +41,46 @@
     </div>
     <el-dialog v-model="state.visible" :title="state.isAdd ? `Add ${state.title}` : `${state.title} Detail`"
       :append-to-body="true">
-      <el-form ref="quizForm" :model="state.data" :rules="state.rules" label-position="top">
+      <el-form ref="quizForm" :model="state.data" :rules="state.rules" label-position="right" label-width="100px">
         <el-form-item label="Quiz" prop="quiz">
           <el-input v-model="state.data.quiz" type="text" clearable />
         </el-form-item>
-        <el-form-item label="Topic" prop="topic">
-          <el-input v-model="state.data.topic" type="text" clearable />
-        </el-form-item>
-        <el-form-item label="Round" prop="round">
-          <el-input v-model="state.data.round" type="text" clearable />
-        </el-form-item>
-        <el-form-item label="Creator" prop="creator">
+        <el-row :gutter="12">
+          <el-col :span="12">
+            <el-form-item label="Topic" prop="topic">
+              <el-input v-model="state.data.topic" type="text" clearable />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="Round" prop="round">
+              <el-input v-model="state.data.round" type="text" clearable />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <!-- <el-form-item label="Creator" prop="creator">
           <el-input v-model="state.data.creator" type="text" clearable />
         </el-form-item>
         <el-form-item label="Creator Id" prop="creatorId">
           <el-input v-model="state.data.creatorId" type="text" clearable />
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="Description" prop="description">
           <el-input v-model="state.data.description" type="textarea" clearable maxlength="240" show-word-limit />
         </el-form-item>
-        <el-form-item label="Winner" prop="winner" v-show="!state.isAdd">
-          <el-input v-model="state.data.winner" type="text" clearable />
-        </el-form-item>
-        <el-form-item label="Winner Id" prop="winnerId" v-show="!state.isAdd">
-          <el-input v-model="state.data.winnerId" type="text" clearable />
-        </el-form-item>
-        <el-form-item label="Is Team" prop="isTeam" v-show="!state.isAdd">
-          <el-input v-model="state.data.isTeam" type="text" clearable />
-        </el-form-item>
+        <el-row :gutter="12" v-show="!state.isAdd">
+          <el-col :span="12">
+            <el-form-item label="Winner" prop="winner">
+              <el-input v-model="state.data.winner" type="text" clearable />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <!-- <el-form-item label="Winner Id" prop="winnerId">
+              <el-input v-model="state.data.winnerId" type="text" clearable />
+            </el-form-item> -->
+            <el-form-item label="Is Team" prop="isTeam" v-show="!state.isAdd">
+              <el-switch v-model="state.data.isTeam" :active-value="IS_TEAM.TEAM" :inactive-value="IS_TEAM.USER" />
+            </el-form-item>
+          </el-col>
+        </el-row>
       </el-form>
       <template #footer>
         <span>
@@ -111,9 +123,11 @@ const state: stateItem = reactive({
   data: {} as quizItem,
   rules: {
     quiz: [
-      { required: true, message: 'Please input quiz', trigger: 'blur' },
+      { required: true, message: 'Please input quiz name', trigger: 'blur' },
       { min: 1, max: 20, message: 'Length should be 1 to 20', trigger: 'blur' }
-    ]
+    ],
+    topic: { required: true, message: 'Please input topic', trigger: 'blur' },
+    round: { required: true, message: 'Please input total rounds', trigger: 'blur' }
   }
 })
 
