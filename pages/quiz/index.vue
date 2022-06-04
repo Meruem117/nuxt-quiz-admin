@@ -13,11 +13,15 @@
       <el-table-column prop="topic" label="Topic" width="120" />
       <el-table-column prop="round" label="Round" width="120" />
       <el-table-column prop="creator" label="Creator" width="120" />
-      <el-table-column prop="creatorId" label="Creator Id" width="120" />
+      <!-- <el-table-column prop="creatorId" label="Creator Id" width="120" /> -->
       <el-table-column prop="description" label="Description" show-overflow-tooltip width="120" />
       <el-table-column prop="winner" label="Winner" width="120" />
-      <el-table-column prop="winnerId" label="Winner Id" width="120" />
-      <el-table-column prop="isTeam" label="Is Team" width="120" />
+      <!-- <el-table-column prop="winnerId" label="Winner Id" width="120" /> -->
+      <el-table-column prop="isTeam" label="Is Team" width="120">
+        <template #default="scope">
+          <el-switch :v-model="scope.row.isTeam === IS_TEAM.TEAM" disabled />
+        </template>
+      </el-table-column>
       <el-table-column prop="createTime" label="Create Time" width="120" />
       <el-table-column label="Operations" fixed="right">
         <template v-slot="scope" #default>
@@ -81,7 +85,7 @@
 import { FormInstance, FormRules, ElMessage, ElMessageBox } from 'element-plus'
 import type { quizItem } from '~/models/quiz'
 import { getQuizPage, getQuizById, updateQuizById, deleteQuizById, addQuiz } from '~/services/quiz'
-import { DEFAULT_PAGE_SIZE } from '~/constant'
+import { DEFAULT_PAGE_SIZE, IS_TEAM } from '~/constant'
 
 interface stateItem {
   title: string,

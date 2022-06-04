@@ -19,3 +19,9 @@ export const QUIT = {
 
 //* question
 export const TYPE = ['Multiple Choice', 'Single Choice']
+
+//* quiz
+export const IS_TEAM = {
+  USER: 0,
+  TEAM: 1
+}
