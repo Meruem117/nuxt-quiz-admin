@@ -5,7 +5,7 @@
       <el-breadcrumb-item>{{ teamName }} - {{ state.title }}</el-breadcrumb-item>
     </el-breadcrumb>
     <el-table :data="state.list" border stripe style="width: 100%">
-      <el-table-column prop="id" label="Id" fixed width="120" />
+      <el-table-column prop="id" label="Id" fixed width="90" />
       <!-- <el-table-column prop="teamId" label="Team Id" width="120" />
       <el-table-column prop="teamName" label="Team Name" width="120" /> -->
       <!-- <el-table-column prop="userId" label="User Id" width="120" /> -->
@@ -15,7 +15,7 @@
           <el-tag :type="PASS[scope.row.pass].type">{{ PASS[scope.row.pass].text }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="Quit" width="120">
+      <el-table-column label="Quit" width="90">
         <template #default="scope">
           <el-switch :v-model="scope.row.quit === QUIT.QUIT" disabled />
         </template>

@@ -5,7 +5,7 @@
       <el-breadcrumb-item>{{ topicName }} - {{ state.title }}</el-breadcrumb-item>
     </el-breadcrumb>
     <el-table :data="state.list" border stripe style="width: 100%">
-      <el-table-column prop="id" label="Id" fixed width="120" />
+      <el-table-column prop="id" label="Id" fixed width="90" />
       <el-table-column prop="question" label="Question" show-overflow-tooltip width="120" />
       <el-table-column prop="up" label="Up" width="120" />
       <!-- <el-table-column prop="upId" label="Up Id" fixed width="120" /> -->
@@ -16,11 +16,11 @@
           <el-tag>{{ TYPE[scope.row.type] }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column prop="optionA" label="Option A" width="120" />
-      <el-table-column prop="optionB" label="Option B" width="120" />
-      <el-table-column prop="optionC" label="Option C" width="120" />
-      <el-table-column prop="optionD" label="Option D" width="120" />
-      <el-table-column prop="answer" label="Answer" width="120" />
+      <el-table-column prop="optionA" label="Option A" show-overflow-tooltip width="90" />
+      <el-table-column prop="optionB" label="Option B" show-overflow-tooltip width="90" />
+      <el-table-column prop="optionC" label="Option C" show-overflow-tooltip width="90" />
+      <el-table-column prop="optionD" label="Option D" show-overflow-tooltip width="90" />
+      <el-table-column prop="answer" label="Answer" width="90" />
       <el-table-column prop="pass" label="Pass" width="120">
         <template #default="scope">
           <el-tag :type="PASS[scope.row.pass].type">{{ PASS[scope.row.pass].text }}</el-tag>

@@ -2,11 +2,11 @@
   <div class="flex flex-col space-y-2">
     <h1>{{ state.title }}</h1>
     <el-table :data="state.list" border stripe style="width: 100%">
-      <el-table-column prop="id" label="Id" fixed width="120" />
+      <el-table-column prop="id" label="Id" fixed width="90" />
       <el-table-column prop="email" label="Email" width="240" />
       <el-table-column prop="name" label="Name" width="120" />
       <!-- <el-table-column prop="password" label="Password" width="120" /> -->
-      <el-table-column prop="gender" label="Gender" :formatter="formatGender" width="120" />
+      <el-table-column prop="gender" label="Gender" :formatter="formatGender" width="90" />
       <el-table-column prop="location" label="Location" width="120" />
       <el-table-column prop="createTime" label="Create Time" width="120" />
       <el-table-column label="Operations" fixed="right">

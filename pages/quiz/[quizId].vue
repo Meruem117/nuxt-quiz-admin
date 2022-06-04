@@ -5,16 +5,16 @@
       <el-breadcrumb-item>{{ quizName }} - {{ state.title }}</el-breadcrumb-item>
     </el-breadcrumb>
     <el-table :data="state.list" border stripe style="width: 100%">
-      <el-table-column prop="id" label="Id" fixed width="120" />
+      <el-table-column prop="id" label="Id" fixed width="90" />
       <!-- <el-table-column prop="quizId" label="Quiz Id" width="120" />
       <el-table-column prop="quizName" label="Quiz Name" width="120" /> -->
-      <el-table-column prop="round" label="Round" width="120" />
-      <el-table-column prop="count" label="Count" width="120" />
-      <el-table-column prop="passNum" label="Pass Number" width="120" />
-      <el-table-column prop="question" label="Question" width="120" />
+      <el-table-column prop="round" label="Round" width="90" />
+      <el-table-column prop="count" label="Count" width="90" />
+      <el-table-column prop="passNum" label="Pass Number" width="90" />
+      <el-table-column prop="question" label="Question" show-overflow-tooltip width="120" />
       <el-table-column prop="startTime" label="Start Time" width="180" />
       <el-table-column prop="endTime" label="End Time" width="180" />
-      <el-table-column prop="length" label="Length" width="120" />
+      <el-table-column prop="length" label="Length" width="90" />
       <el-table-column prop="status" label="Status" width="120">
         <template #default="scope">
           <el-tag :type="STATUS[scope.row.status].type">{{ STATUS[scope.row.status].text }}</el-tag>

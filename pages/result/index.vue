@@ -2,23 +2,23 @@
   <div class="flex flex-col space-y-2">
     <h1>{{ state.title }}</h1>
     <el-table :data="state.list" border stripe style="width: 100%">
-      <el-table-column prop="id" label="Id" fixed width="120" />
-      <el-table-column prop="quizId" label="Quiz Id" width="120" />
+      <el-table-column prop="id" label="Id" fixed width="90" />
+      <!-- <el-table-column prop="quizId" label="Quiz Id" width="120" /> -->
       <el-table-column prop="quizName" label="Quiz Name" width="120" />
-      <el-table-column prop="round" label="Round" width="120" />
-      <el-table-column prop="scheduleId" label="Schedule Id" width="120" />
-      <el-table-column prop="participantId" label="Participant Id" width="120" />
-      <el-table-column prop="participantName" label="Participant Name" width="120" />
-      <el-table-column prop="isTeam" label="Is Team" width="120" />
+      <el-table-column prop="round" label="Round" width="90" />
+      <!-- <el-table-column prop="scheduleId" label="Schedule Id" width="120" /> -->
+      <!-- <el-table-column prop="participantId" label="Participant Id" width="120" /> -->
+      <el-table-column prop="participantName" label="Name" width="120" />
+      <el-table-column prop="isTeam" label="Is Team" width="90" />
       <el-table-column prop="status" label="Status" width="120" />
-      <el-table-column prop="isTake" label="Is Take" width="120" />
-      <el-table-column prop="correct" label="Correct" width="120" />
-      <el-table-column prop="correctRate" label="Correct Rate" width="120" />
-      <el-table-column prop="answers" label="Answers" width="120" />
-      <el-table-column prop="errors" label="Errors" width="120" />
-      <el-table-column prop="isOut" label="Is Out" width="120" />
-      <el-table-column prop="takeTime" label="Take Time" width="120" />
-      <el-table-column prop="createTime" label="Create Time" width="120" />
+      <el-table-column prop="isTake" label="Is Take" width="90" />
+      <el-table-column prop="correct" label="Correct" width="90" />
+      <el-table-column prop="correctRate" label="Correct Rate" width="90" />
+      <el-table-column prop="answers" label="Answers" show-overflow-tooltip width="120" />
+      <el-table-column prop="errors" label="Errors" show-overflow-tooltip width="120" />
+      <el-table-column prop="isOut" label="Is Out" width="90" />
+      <el-table-column prop="takeTime" label="Take Time" width="180" />
+      <el-table-column prop="createTime" label="Create Time" width="180" />
       <el-table-column label="Operations" fixed="right">
         <template v-slot="scope" #default>
           <el-button type="primary" size="small" @click="openDetail(scope.row)">Detail</el-button>
