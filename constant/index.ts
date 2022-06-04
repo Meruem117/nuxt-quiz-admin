@@ -25,3 +25,10 @@ export const IS_TEAM = {
   USER: 0,
   TEAM: 1
 }
+
+//* schedule
+export const STATUS = [
+  { text: 'Not Start', type: 'info' },
+  { text: 'Start', type: 'success' },
+  { text: 'End', type: 'danger' }
+]

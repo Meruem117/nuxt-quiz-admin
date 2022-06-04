@@ -53,7 +53,7 @@
           </el-col>
           <el-col :span="12">
             <el-form-item label="Round" prop="round">
-              <el-input v-model="state.data.round" type="text" clearable />
+              <el-input-number v-model="state.data.round" :min="1" style="width: 100%" />
             </el-form-item>
           </el-col>
         </el-row>

@@ -6,8 +6,8 @@
     </el-breadcrumb>
     <el-table :data="state.list" border stripe style="width: 100%">
       <el-table-column prop="id" label="Id" fixed width="120" />
-      <el-table-column prop="quizId" label="Quiz Id" width="120" />
-      <el-table-column prop="quizName" label="Quiz Name" width="120" />
+      <!-- <el-table-column prop="quizId" label="Quiz Id" width="120" />
+      <el-table-column prop="quizName" label="Quiz Name" width="120" /> -->
       <el-table-column prop="round" label="Round" width="120" />
       <el-table-column prop="count" label="Count" width="120" />
       <el-table-column prop="passNum" label="Pass Number" width="120" />
@@ -15,7 +15,11 @@
       <el-table-column prop="startTime" label="Start Time" width="180" />
       <el-table-column prop="endTime" label="End Time" width="180" />
       <el-table-column prop="length" label="Length" width="120" />
-      <el-table-column prop="status" label="Status" width="120" />
+      <el-table-column prop="status" label="Status" width="120">
+        <template #default="scope">
+          <el-tag :type="STATUS[scope.row.status].type">{{ STATUS[scope.row.status].text }}</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column prop="createTime" label="Create Time" width="120" />
       <el-table-column label="Operations" fixed="right">
         <template v-slot="scope" #default>
@@ -36,35 +40,35 @@
     <el-dialog v-model="state.visible" :title="state.isAdd ? `Add ${state.title}` : `${state.title} Detail`"
       :append-to-body="true">
       <el-form ref="scheduleForm" :model="state.data" :rules="state.rules" label-position="left">
-        <el-row :gutter="10">
+        <el-row :gutter="12">
           <el-col :span="8">
             <el-form-item label="Round" prop="round">
-              <el-input-number v-model="state.data.round" :min="1" />
+              <el-input-number v-model="state.data.round" :min="1" style="width: 100%" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="Count" prop="count">
-              <el-input-number v-model="state.data.count" :min="1" />
+              <el-input-number v-model="state.data.count" :min="1" style="width: 100%" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="Pass Number" prop="passNum">
-              <el-input-number v-model="state.data.passNum" :min="1" />
+              <el-input-number v-model="state.data.passNum" :min="1" style="width: 100%" />
             </el-form-item>
           </el-col>
         </el-row>
         <el-form-item label="Question" prop="question">
           <el-input v-model="state.data.question" type="text" clearable />
         </el-form-item>
-        <el-row :gutter="10">
+        <el-row :gutter="12">
           <el-col :span="12">
             <el-form-item label="Start Time" prop="startTime">
-              <el-date-picker v-model="state.data.startTime" type="datetime" />
+              <el-date-picker v-model="state.data.startTime" type="datetime" style="width: 100%" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="End Time" prop="endTime">
-              <el-date-picker v-model="state.data.endTime" type="datetime" />
+              <el-date-picker v-model="state.data.endTime" type="datetime" style="width: 100%" />
             </el-form-item>
           </el-col>
           <!-- <el-col :span="8">
@@ -89,7 +93,7 @@
 import { FormInstance, FormRules, ElMessage, ElMessageBox } from 'element-plus'
 import type { scheduleItem } from '~/models/schedule'
 import { getSchedulePage, getScheduleById, updateScheduleById, deleteScheduleById, addSchedule } from '~/services/schedule'
-import { DEFAULT_PAGE_SIZE } from '~/constant'
+import { DEFAULT_PAGE_SIZE, STATUS } from '~/constant'
 
 interface stateItem {
   title: string,
