@@ -21,6 +21,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="joinTime" label="Join Time" width="120" />
+      <el-table-column prop="applyTime" label="Apply Time" width="120" />
       <el-table-column prop="createTime" label="Create Time" width="120" />
       <el-table-column label="Operations" fixed="right">
         <template v-slot="scope" #default>
@@ -40,7 +41,7 @@
     </div>
     <el-dialog v-model="state.visible" :title="state.isAdd ? `Add ${state.title}` : `${state.title} Detail`"
       :append-to-body="true">
-      <el-form ref="memberForm" :model="state.data" :rules="state.rules" label-position="top">
+      <el-form ref="memberForm" :model="state.data" :rules="state.rules" label-position="right" label-width="100px">
         <el-row :gutter="12">
           <el-col :span="12">
             <el-form-item label="User Id" prop="userId">
@@ -56,12 +57,26 @@
         <el-row :gutter="12" v-show="!state.isAdd">
           <el-col :span="12">
             <el-form-item label="Pass" prop="pass">
-              <el-input v-model="state.data.pass" type="text" clearable />
+              <el-select v-model="state.data.pass" style="width: 100%">
+                <el-option v-for="(item, index) in PASS" :key="index" :label="item.text" :value="index.toString()" />
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="Quit" prop="quit">
-              <el-input v-model="state.data.quit" type="text" clearable />
+              <el-switch v-model="state.data.quit" :active-value="QUIT.QUIT" :inactive-value="QUIT.NOT_QUIT" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="12" v-show="!state.isAdd">
+          <el-col :span="12">
+            <el-form-item label="Join Time" prop="joinTime">
+              <el-date-picker v-model="state.data.joinTime" type="date" style="width: 100%" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="Apply Time" prop="applyTime">
+              <el-date-picker v-model="state.data.applyTime" type="date" style="width: 100%" />
             </el-form-item>
           </el-col>
         </el-row>
