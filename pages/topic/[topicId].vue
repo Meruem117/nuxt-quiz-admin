@@ -46,8 +46,53 @@
     </div>
     <el-dialog v-model="state.visible" :title="state.isAdd ? `Add ${state.title}` : `${state.title} Detail`"
       :append-to-body="true">
-      <el-form ref="questionForm" :model="state.data" :rules="state.rules" label-position="top">
-
+      <el-form ref="questionForm" :model="state.data" :rules="state.rules" label-position="right" label-width="100px">
+        <el-form-item label="Question" prop="question">
+          <el-input v-model="state.data.question" type="textarea" autosize clearable />
+        </el-form-item>
+        <el-row :gutter="12">
+          <el-col :span="12">
+            <el-form-item label="Type" prop="type">
+              <el-radio-group v-model="state.data.type">
+                <el-radio v-for="(item, index) in TYPE" :key="index" :label="index">{{ item }}</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="Pass" prop="pass" v-show="!state.isAdd">
+              <el-select v-model="state.data.pass" style="width: 100%">
+                <el-option v-for="(item, index) in PASS" :key="index" :label="item.text" :value="index.toString()" />
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="12">
+          <el-col :span="12">
+            <el-form-item label="Option A" prop="optionA">
+              <el-input v-model="state.data.optionA" type="text" clearable />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="Option B" prop="optionB">
+              <el-input v-model="state.data.optionB" type="text" clearable />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="12">
+          <el-col :span="12">
+            <el-form-item label="Option C" prop="optionC">
+              <el-input v-model="state.data.optionC" type="text" clearable />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="Option D" prop="optionD">
+              <el-input v-model="state.data.optionD" type="text" clearable />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-form-item label="Answer" prop="answer">
+          <el-input v-model="state.data.answer" type="text" clearable />
+        </el-form-item>
       </el-form>
       <template #footer>
         <span>
@@ -92,6 +137,11 @@ const state: stateItem = reactive({
   isAdd: false,
   data: {} as questionItem,
   rules: {
+    question: { required: true, message: 'Please input question', trigger: 'blur' },
+    type: { required: true, message: 'Please select question type', trigger: 'blur' },
+    optionA: { required: true, message: 'Please input option a', trigger: 'blur' },
+    optionB: { required: true, message: 'Please input option b', trigger: 'blur' },
+    answer: { required: true, message: 'Please select correct answer', trigger: 'blur' }
   }
 })
 
