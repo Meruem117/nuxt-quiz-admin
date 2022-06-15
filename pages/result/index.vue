@@ -54,7 +54,76 @@
     </div>
     <el-dialog v-model="state.visible" :title="state.isAdd ? `Add ${state.title}` : `${state.title} Detail`"
       :append-to-body="true">
-      <el-form ref="resultForm" :model="state.data" :rules="state.rules" label-position="top">
+      <el-form ref="resultForm" :model="state.data" :rules="state.rules" label-position="left" label-width="100px">
+        <el-row :gutter="12">
+          <el-col :span="12">
+            <el-form-item label="Quiz Name" prop="quizName">
+              <el-input v-model="state.data.quizName" type="text" clearable />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="Round" prop="round">
+              <el-input-number v-model="state.data.round" :min="1" style="width: 100%" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="12">
+          <el-col :span="12">
+            <el-form-item label="Name" prop="participantName">
+              <el-input v-model="state.data.participantName" type="text" clearable />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="Is Team" prop="isTeam">
+              <el-switch v-model="state.data.isTeam" :active-value="IS_TEAM.TEAM" :inactive-value="IS_TEAM.USER" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="12">
+          <el-col :span="12">
+            <el-form-item label="Status" prop="status">
+              <el-select v-model="state.data.status" style="width: 100%">
+                <el-option v-for="(item, index) in STATUS" :key="index" :label="item.text" :value="index" />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item label="Is Take" prop="isTake">
+              <el-switch v-model="state.data.isTake" :active-value="IS_TAKE.TAKE" :inactive-value="IS_TAKE.NOT_TAKE" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item label="Is Out" prop="isOut">
+              <el-switch v-model="state.data.isOut" :active-value="IS_OUT.OUT" :inactive-value="IS_OUT.NOT_OUT" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="12">
+          <el-col :span="12">
+            <el-form-item label="Correct" prop="correct">
+              <el-input-number v-model="state.data.correct" :min="0" style="width: 100%" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="Correct Rate" prop="correctRate">
+              <el-input v-model="state.data.correctRate" type="number" :min="0" :max="100">
+                <template #append>%</template>
+              </el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="12">
+          <el-col :span="12">
+            <el-form-item label="Answers" prop="answers">
+              <el-input v-model="state.data.answers" type="text" clearable />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="Errors" prop="errors">
+              <el-input v-model="state.data.errors" type="text" clearable />
+            </el-form-item>
+          </el-col>
+        </el-row>
       </el-form>
       <template #footer>
         <span>
