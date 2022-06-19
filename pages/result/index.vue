@@ -165,7 +165,19 @@ const state: stateItem = reactive({
   visible: false,
   isAdd: false,
   data: {} as resultItem,
-  rules: {}
+  rules: {
+    quizName: { required: true, message: 'Please input quiz name', trigger: 'blur' },
+    round: { required: true, message: 'Please input round', trigger: 'blur' },
+    participantName: { required: true, message: 'Please input name', trigger: 'blur' },
+    isTeam: { required: true, message: 'Please select is team', trigger: 'blur' },
+    status: { required: true, message: 'Please select status', trigger: 'blur' },
+    isTake: { required: true, message: 'Please select is take', trigger: 'blur' },
+    isOut: { required: true, message: 'Please select is out', trigger: 'blur' },
+    correct: { required: true, message: 'Please input correct', trigger: 'blur' },
+    correctRate: { required: true, message: 'Please input correct rate', trigger: 'blur' },
+    answers: { required: true, message: 'Please input answers', trigger: 'blur' },
+    errors: { required: true, message: 'Please input errors', trigger: 'blur' }
+  }
 })
 
 async function load(): Promise<void> {
