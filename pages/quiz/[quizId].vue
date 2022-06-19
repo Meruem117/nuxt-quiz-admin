@@ -121,6 +121,12 @@ const state: stateItem = reactive({
   isAdd: false,
   data: {} as scheduleItem,
   rules: {
+    round: { required: true, message: 'Please input round', trigger: 'blur' },
+    count: { required: true, message: 'Please input count', trigger: 'blur' },
+    passNum: { required: true, message: 'Please input pass number', trigger: 'blur' },
+    question: { required: true, message: 'Please input question', trigger: 'blur' },
+    startTime: { required: true, message: 'Please select start time', trigger: 'blur' },
+    endTime: { required: true, message: 'Please select start time', trigger: 'blur' }
   }
 })
 
